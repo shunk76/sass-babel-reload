@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm-run-all -p gulp watch",
+    "gulp": "gulp",
     "build": "webpack --mode production",
     "watch": "webpack --watch"
   },
