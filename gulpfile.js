@@ -8,6 +8,7 @@ const autoprefixer = require('autoprefixer')
 const cssnano = require('cssnano')
 const merge = require('gulp-merge-media-queries')
 const browserSync = require('browser-sync').create()
+const path = require('path')
 
 const compileSass = () =>
   src('resources/src/scss/*.scss')
@@ -28,11 +29,11 @@ const compileSass = () =>
 
 const serve = () => {
   browserSync.init({
-    proxy: ''
+    proxy: path.basename(__dirname)
   })
 
   watch('resources/src/scss/*.scss', compileSass)
-  watch(['resources/*.php', 'resources/js/*.js', 'resources/*.js']).on('change', browserSync.reload)
+  watch(['resources/*.php', 'resources/*.js']).on('change', browserSync.reload)
 }
 
 exports.default = serve
