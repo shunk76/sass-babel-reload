@@ -10,8 +10,11 @@ const merge = require('gulp-merge-media-queries')
 const browserSync = require('browser-sync').create()
 const path = require('path')
 
+const files_dir = './recources/'
+const src_dir = files_dir + 'src/'
+
 const compileSass = () =>
-  src('resources/src/scss/*.scss')
+  src(src_dir + 'scss/*.scss')
     .pipe(sass({
       outputStyle: 'expanded'
     }))
@@ -19,12 +22,12 @@ const compileSass = () =>
       autoprefixer({ grid: true })
     ]))
     .pipe(merge())
-    .pipe(dest('resources'))
+    .pipe(dest(files_dir))
     .pipe(postcss([
       cssnano()
     ]))
     .pipe(rename({ suffix: '.min' }))
-    .pipe(dest('resources'))
+    .pipe(dest(files_dir))
     .pipe(browserSync.stream())
 
 const serve = () => {
@@ -32,8 +35,8 @@ const serve = () => {
     proxy: path.basename(__dirname)
   })
 
-  watch('resources/src/scss/*.scss', compileSass)
-  watch(['resources/*.php', 'resources/*.js']).on('change', browserSync.reload)
+  watch(src_dir + 'scss/*.scss', compileSass)
+  watch([files_dir + '*.php', files_dir + '*.js']).on('change', browserSync.reload)
 }
 
 exports.default = serve
