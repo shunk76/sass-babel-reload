@@ -10,7 +10,7 @@ const merge = require('gulp-merge-media-queries')
 const browserSync = require('browser-sync').create()
 const path = require('path')
 
-const files_dir = './recources/'
+const files_dir = './resources/'
 const src_dir = files_dir + 'src/'
 
 const compileSass = () =>
