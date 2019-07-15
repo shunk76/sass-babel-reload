@@ -32,7 +32,7 @@ const compileSass = () =>
 
 const serve = () => {
   browserSync.init({
-    proxy: path.basename(__dirname)
+    proxy: ''
   })
 
   watch(src_dir + 'scss/*.scss', compileSass)
